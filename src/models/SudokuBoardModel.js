@@ -18,7 +18,7 @@ export default class SudokuBoardModel {
   get isFinished() {
     let foundEmptyCell = false;
     for (let i = 0; i < 81; i++) {
-      if (!cells[i].value) {
+      if (!this.cells[i].value) {
         foundEmptyCell = true;
       }
     }
@@ -34,7 +34,7 @@ export default class SudokuBoardModel {
     let additionalRemovals = [];
 
     for (let i = 0; i < 81; i++) {
-      let newCell = cells[i];
+      let newCell = this.cells[i];
       if (
         newCell.candidates && (
           newCell.row_column_square[0] === row
@@ -57,8 +57,8 @@ export default class SudokuBoardModel {
   @action
   wipeCandidates() {
     for (let i = 0; i < 81; i++) {
-      if (cells[i].value) {
-        this.removeCandidates(cells[i]);
+      if (this.cells[i].value) {
+        this.removeCandidates(this.cells[i]);
       }
     }
   }
